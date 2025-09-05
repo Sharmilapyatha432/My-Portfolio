@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharmila Pyatha | Graphic Designer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Montserrat and Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #2C3E50; /* Midnight Blue - strong, professional */
+            background-color: #E0F7FA; /* Light Cyan - very subtle background */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll from subtle 3D elements */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2C3E50; /* Midnight Blue */
+        }
+        /* Custom styles for specific elements or overrides */
+        .project-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Main content sections to be layered above the 3D background */
+        main {
+            position: relative;
+            z-index: 10; /* Ensure content is above 3D background */
+            /* Padding for header will be set by JavaScript */
+        }
+        .section-padding {
+            padding: 3rem 1.5rem; /* Consistent padding for sections */
+            margin-bottom: 3rem; /* Consistent margin between sections */
+        }
+
+        /* 3D Photo Effect Styles */
+        .about-photo {
+            perspective: 1000px; /* Establishes a 3D context for the children */
+            transition: transform 0.3s ease-out; /* Smooth transition for hover */
+        }
+
+        .about-photo img {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition for image transform and shadow */
+            transform-origin: center center; /* Ensure rotation is from the center */
+        }
+
+        .about-photo:hover img {
+            transform: rotateY(5deg) rotateX(5deg) scale(1.02); /* Slight tilt and scale on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Three.js Container - This will host our 3D background -->
+    <div id="three-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></div>
+
+    <!-- Header & Navigation -->
+    <!-- Changed to 'fixed top-0' for standard smart header behavior -->
+    <header id="main-header" class="bg-white shadow-md p-4 fixed top-0 w-full z-50 rounded-b-lg transform transition-transform duration-300 ease-out translate-y-0">
+        <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <a href="#about" class="text-2xl font-bold text-[#FF6B6B] mb-2 md:mb-0">Sharmila Pyatha</a>
+            <ul class="flex flex-wrap justify-center space-x-4 md:space-x-8 text-lg font-semibold">
+                <li><a href="#about" class="text-gray-700 hover:text-[#FF6B6B] transition duration-300 rounded-md px-2 py-1">About</a></li>
+                <li><a href="#philosophy" class="text-gray-700 hover:text-[#FF6B6B] transition duration-300 rounded-md px-2 py-1">Philosophy</a></li>
+                <li><a href="#portfolio" class="text-gray-700 hover:text-[#FF6B6B] transition duration-300 rounded-md px-2 py-1">Portfolio</a></li>
+                <li><a href="#contact" class="text-gray-700 hover:text-[#FF6B6B] transition duration-300 rounded-md px-2 py-1">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center section-padding bg-gradient-to-r from-teal-50 to-cyan-100 rounded-xl shadow-inner">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#FF6B6B] mb-4 leading-tight">
+                Crafting Visual Stories. Designing Impact.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8">
+                A passionate Graphic Designer focused on creating meaningful and aesthetically compelling solutions.
+            </p>
+            <a href="#portfolio" class="bg-[#FF6B6B] hover:bg-[#E74C3C] text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                View My Work
+            </a>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="bg-white section-padding rounded-xl shadow-md">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 border-b-2 border-[#B2EBF2] pb-4">About Me</h2>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start text-gray-700">
+                <!-- Left Column: Photo & Full Description -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <div id="about-photo-wrapper" class="about-photo">
+                        <img src="IMG-20241104-WA0006.jpg" alt="Your Name - Graphic Designer" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-lg mb-6">
+                    </div>
+                    <!-- Moved all descriptive paragraphs to the left column -->
+                    <p class="text-lg mb-4">Hello! I'm Sharmila Pyatha, a passionate and imaginative graphic designer with a fresh perspective and a keen eye for detail. I love turning ideas into visuals that not only look great but also communicate effectively and leave a lasting impression.</p>
+                    <p class="text-lg mb-4">My journey in design has been fueled by curiosity, creativity, and a commitment to understanding peoples needs. I believe that design is more than aesthetics its about solving problems, telling stories, and creating experiences that truly resonate.</p>
+                    <p class="text-lg mb-6">From crafting brand identities and logos to designing print layouts, editorial pieces, and digital interfaces, I enjoy exploring different mediums to bring ideas to life. I'm also drawn to thoughtful use of typography, color theory, and layout because the small details often make the biggest impact.</p>
+                </div>
+
+                <!-- Right Column: Details (Education, Skills, Interests, Languages) -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Education</h3>
+                    <ul class="list-disc list-inside mb-6 text-base space-y-1">
+                        <li>Bachelor of Computer Application (BCA) - Tribhuvan University/ Danfe College, 2025</li>
+                        <!-- <li>**[Relevant Certification]** - [Institution], [Year]</li> -->
+                    </ul>
+
+                    <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Experience</h3>
+                    <div class="mb-6">
+                        <p class="font-medium text-lg mb-2">April 2025 - July 2025 </p>
+                        <p class="font-medium text-lg mb-2">Graphic Designer (Intern)</p>
+                        <p class="text-base">Firefly InfoTech</p>
+                        <!-- <p class="font-medium text-lg mt-4 mb-2">December 2024 - March 2025 </p>
+                        <p class="font-medium text-lg mb-2">Digital Marketing (Intern)</p>
+                        <p class="text-base">BG IT Solution</p> -->
+                    </div>
+
+                     <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Skills</h3>
+                    <div class="mb-6">
+                        <p class="font-medium text-lg mb-2">Design Software:</p>
+                        <p class="text-base">Adobe Photoshop, Adobe Illustrator, Adobe InDesign, Adobe Premiere Pro, Figma</p>
+                        <p class="font-medium text-lg mt-4 mb-2">Key Skills:</p>
+                        <ul class="list-disc list-inside text-base space-y-1">
+                            <!-- <li>UI/UX Design & Prototyping</li> -->
+                            <li>Brand Identity & Logo Design</li>
+                            <li>Print & Editorial Design</li>
+                            <!-- <li>Illustration & Iconography</li> -->
+                            <li>Web Design (HTML/CSS familiarity)</li>
+                            <li>Typography & Color Theory</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Interests</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Design</div>
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Arts & Craft</div>
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Music</div>
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Cinema</div>
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Design thinking</div>
+                        <div class="bg-transparent border-2 border-black text-black rounded-full px-4 py-2 text-base shadow-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer">Psychology</div>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Languages</h3>
+                    <ul class="list-disc list-inside text-base space-y-1">
+                        <li>Nepali - Native</li>
+                        <li>English - Fluent</li>
+                        <li>Hindi - Conversational</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Design Philosophy Section -->
+        <section id="philosophy" class="bg-gradient-to-r from-gray-50 to-gray-100 section-padding rounded-xl shadow-md">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 border-b-2 border-[#B2EBF2] pb-4">My Design Philosophy</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-700 text-center">
+                <p class="mb-4">I believe in purposeful simplicity design that is not only visually appealing but also meaningful, functional, and impactful.or me, great design is more than style, it's effective communication, clean usability, and understated problem solving. Every choice, a line, a color, a font, is intentional, a block that helps build the creation of experiences that stick and matter.</p>
+                <p>At the center of my process is a user-focused mentality. I strive to understand what people need, do, and feel, so that each design performs flawlessly for them. With passion for learning and a sense of curiosity, I embrace the evolving nature of design and always try to marry creativity with strategy to deliver thoughtful, engaging solutions.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Gallery Section -->
+        <section id="portfolio" class="py-8 md:py-12" >
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 border-b-2 border-[#B2EBF2] pb-4">My Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1 Placeholder -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="nurses day firefly.png" alt="Placeholder for Festive Post Design project" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#1ABC9C]">Project 1 - Festive Post Design</h3>
+                        <!-- <p class="text-gray-600 mb-4">Seamless Flow: A Fitness Tracker App Redesign</p> -->
+                        <a href="#project-details-1" class="text-[#FF6B6B] hover:underline font-medium">View Case Study &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 Placeholder -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="bachelor of nursing.png" alt="Placeholder for Stack Post Design project" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#1ABC9C]">Project 2 - Stack Post Design</h3>
+                        <!-- <p class="text-gray-600 mb-4">Brand Identity: 'Aether Collective' - Sustainable Fashion Logo</p> -->
+                        <a href="#project-details-2" class="text-[#FF6B6B] hover:underline font-medium">View Case Study &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 Placeholder -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <img src="kamal dai reception welcome board.png" alt="Placeholder for Canva Design project" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#1ABC9C]">Project 3 - Canva Design</h3>
+                        <!-- <p class="text-gray-600 mb-4">Event Promotion: 'Jazz Fusion Night' - Illustrative Poster Series</p> -->
+                        <a href="#project-details-3" class="text-[#FF6B6B] hover:underline font-medium">View Case Study &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Project Detail Section (Add more for each project) -->
+        <section id="project-details-1" class="bg-white section-padding rounded-xl shadow-md">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center border-b-2 border-[#B2EBF2] pb-4">Project 1 - Festive Post Design</h2>
+            <div class="max-w-4xl mx-auto text-lg text-gray-700">
+                <!-- <p class="mb-4">Role: UI/UX Designer</p>
+                <p class="mb-6">Brief: Redesign an existing fitness tracking mobile application to improve user engagement, simplify navigation, and enhance the visual appeal.</p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">The Challenge:</h3>
+                <p class="mb-6">Users found the original app cluttered and difficult to navigate, leading to low retention rates. The visual design felt outdated and lacked a motivating aesthetic.</p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">My Approach:</h3>
+                <p class="mb-4">I began with user research to identify pain points and desired features. This led to creating user flows, wireframes, and low-fidelity prototypes to establish a clear information architecture. For the visual design, I focused on a clean, vibrant aesthetic, utilizing a fresh color palette and intuitive iconography to enhance the user experience.</p>
+                <p class="mb-6">Key iterations included simplifying the workout tracking process, redesigning data visualization for better readability, and incorporating motivational elements.</p> -->
+
+                <!-- <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Key Deliverables:</h3>
+                <ul class="list-disc list-inside mb-6 space-y-2">
+                    <li>High-fidelity UI mockups for key screens (dashboard, workout tracker, progress)</li>
+                    <li>Interactive prototype (demonstrating core user flows)</li>
+                    <li>Comprehensive UI style guide (color palette, typography, components)</li>
+                    <li>Iconography set</li>
+                </ul> -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <img src="repablic day firefly.png" alt="Festive Post Design 1" class="rounded-lg shadow-md w-full">
+                    <img src="republic day oasis.png" alt="Festive Post Design 2" class="rounded-lg shadow-md w-full">
+                    <img src="yoga day glam.png" alt="Festive Post Design 3" class="rounded-lg shadow-md w-full">
+                    <img src="gai jatra firefly.png" alt="Festive Post Design 4" class="rounded-lg shadow-md w-full">
+                </div>
+                <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Tools Used:</h3>
+                <p class="mb-6">Adobe Photoshop</p>
+
+                <!-- <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Learnings & Impact:</h3>
+                <p>This project reinforced the importance of user feedback in design iteration. By focusing on clarity and motivation, the redesigned interface aims to significantly improve user retention and satisfaction. It taught me valuable lessons in structuring complex data for easy consumption and creating a cohesive visual language.</p> -->
+            </div>
+        </section>
+
+        <section id="project-details-2" class="bg-white section-padding rounded-xl shadow-md">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center border-b-2 border-[#B2EBF2] pb-4">Project 2 - Stack Post Design</h2>
+            <div class="max-w-4xl mx-auto text-lg text-gray-700">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <img src="Shwaran Offer.jpg" alt="Stack Post Design 1" class="rounded-lg shadow-md w-full">
+                    <img src="feed fact himalayan silage.png" alt="Stack Post Design 2" class="rounded-lg shadow-md w-full">
+                    <img src="ask us anything glam.png" alt="Stack Post Design 3" class="rounded-lg shadow-md w-full">
+                    <img src="design gyan.png" alt="Stack Post Design 4" class="rounded-lg shadow-md w-full">
+                </div>
+                <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Tools Used:</h3>
+                <p class="mb-6">Adobe Photoshop</p>
+            </div>
+        </section>
+
+        <section id="project-details-3" class="bg-white section-padding rounded-xl shadow-md">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center border-b-2 border-[#B2EBF2] pb-4">Project 3 - Canva Design</h2>
+            <div class="max-w-4xl mx-auto text-lg text-gray-700">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <img src="kamal dai reception welcome board.png" alt="Stack Post Design 1" class="rounded-lg shadow-md w-full">
+                    <img src="renu di wedding welcome board.png" alt="Stack Post Design 2" class="rounded-lg shadow-md w-full"> 
+                </div>
+                <h3 class="text-2xl font-semibold mb-3 text-[#1ABC9C]">Tools Used:</h3>
+                <p class="mb-6">Adobe Photoshop</p>
+            </div>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section id="contact" class="bg-white section-padding rounded-xl shadow-md text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 border-b-2 border-[#B2EBF2] pb-4">Get In Touch</h2>
+            <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+                I'm always excited to discuss new projects, creative collaborations, or opportunities. Feel free to reach out!
+            </p>
+            <div class="space-y-4 mb-8">
+                <p class="text-xl font-semibold">Email: <a href="mailto:your.email@example.com" class="text-[#FF6B6B] hover:underline">sharmilapyatha8@gmail.com</a></p>
+                <p class="text-xl font-semibold">LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-[#FF6B6B] hover:underline">https://www.linkedin.com/in/sharmila-pyatha-a67900210/</a></p>
+            </div>
+
+            <!-- Simple Contact Form (optional - requires backend or form service) -->
+            <form class="max-w-xl mx-auto bg-gray-50 p-6 rounded-lg shadow-inner">
+                <div class="mb-4 text-left">
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                    <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-[#FF6B6B] rounded-md" placeholder="Your Name">
+                </div>
+                <div class="mb-4 text-left">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-[#FF6B6B] rounded-md" placeholder="your.email@example.com">
+                </div>
+                <div class="mb-6 text-left">
+                    <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                    <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-[#FF6B6B] rounded-md" placeholder="Tell me about your project..."></textarea>
+                </div>
+                <button type="submit" class="bg-[#FF6B6B] hover:bg-[#E74C3C] text-white font-bold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                    Send Message
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-6 rounded-t-lg">
+        <p>&copy; <span id="current-year"></span> Your Name. All rights reserved.</p>
+        <p class="text-sm mt-2">Designed with passion and purpose.</p>
+    </footer>
+
+    <script>
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Three.js Setup for 3D Background ---
+        window.onload = function() {
+            const container = document.getElementById('three-container');
+            let scene, camera, renderer, shapes = [], light;
+
+            function init() {
+                // Scene setup
+                scene = new THREE.Scene();
+
+                // Camera setup
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+
+                // Renderer setup
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Alpha true for transparent background
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                container.appendChild(renderer.domElement);
+
+                // Lighting
+                light = new THREE.DirectionalLight(0xffffff, 0.8);
+                light.position.set(0, 0, 10);
+                scene.add(light);
+
+                const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+                scene.add(ambientLight);
+
+                // Define vibrant colors for 3D shapes
+                const colors = [
+                    new THREE.Color(0xFF6B6B), // Vibrant Coral
+                    new THREE.Color(0x1ABC9C), // Emerald Green
+                    new THREE.Color(0xB2EBF2), // Light Teal
+                    new THREE.Color(0x7F8C8D)  // Muted grey for contrast if needed
+                ];
+
+                // Create and add shapes
+                const geometries = [
+                    new THREE.SphereGeometry(0.5, 32, 32),
+                    new THREE.BoxGeometry(0.8, 0.8, 0.8),
+                    new THREE.TorusGeometry(0.4, 0.2, 16, 100),
+                    new THREE.DodecahedronGeometry(0.6)
+                ];
+
+                for (let i = 0; i < 10; i++) {
+                    const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+                    const material = new THREE.MeshPhysicalMaterial({
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        roughness: 0.5,
+                        metalness: 0.1,
+                        transparent: true,
+                        opacity: 0.6 + Math.random() * 0.2, // Slightly varied opacity
+                        clearcoat: 0.5,
+                        clearcoatRoughness: 0.2
+                    });
+                    const shape = new THREE.Mesh(geometry, material);
+
+                    // Random positioning
+                    shape.position.x = (Math.random() - 0.5) * 10;
+                    shape.position.y = (Math.random() - 0.5) * 10;
+                    shape.position.z = (Math.random() - 0.5) * 10 - 5; // Push them slightly back
+
+                    // Random initial rotation
+                    shape.rotation.x = Math.random() * Math.PI;
+                    shape.rotation.y = Math.random() * Math.PI;
+
+                    scene.add(shape);
+                    shapes.push(shape);
+                }
+
+                // Handle window resizing
+                window.addEventListener('resize', onWindowResize, false);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Animate shapes
+                shapes.forEach(shape => {
+                    shape.rotation.x += 0.005 + (mouseY * 0.0001); // Subtle rotation, influenced by mouse
+                    shape.rotation.y += 0.005 + (mouseX * 0.0001);
+                    // Optionally, make them slowly drift or float
+                    shape.position.y += Math.sin(Date.now() * 0.0005 + shape.uuid.charCodeAt(0)) * 0.0005;
+                    shape.position.x += Math.cos(Date.now() * 0.0005 + shape.uuid.charCodeAt(1)) * 0.0005;
+                });
+
+                // Subtle camera movement based on mouse
+                camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+
+
+                renderer.render(scene, camera);
+            }
+
+            init();
+            animate();
+
+            // --- Photo Parallax Effect ---
+            const aboutPhotoWrapper = document.getElementById('about-photo-wrapper');
+            const aboutPhotoImg = aboutPhotoWrapper.querySelector('img');
+
+            if (aboutPhotoWrapper && aboutPhotoImg) {
+                aboutPhotoWrapper.addEventListener('mousemove', (e) => {
+                    const rect = aboutPhotoWrapper.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width; // 0 to 1
+                    const y = (e.clientY - rect.top) / rect.height; // 0 to 1
+
+                    // Calculate rotation angles
+                    const rotateY = (x - 0.5) * 10; // -5 to 5 degrees
+                    const rotateX = (0.5 - y) * 10; // -5 to 5 degrees
+
+                    aboutPhotoImg.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                    aboutPhotoImg.style.boxShadow = `${(x - 0.5) * 15}px ${(y - 0.5) * 15}px 30px rgba(0, 0, 0, 0.3)`; // Adjust shadow based on mouse
+                });
+
+                aboutPhotoWrapper.addEventListener('mouseleave', () => {
+                    aboutPhotoImg.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                    aboutPhotoImg.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)'; // Reset shadow
+                });
+            }
+
+            // --- Navbar Show/Hide on Scroll ---
+            const header = document.getElementById('main-header');
+            const mainContent = document.querySelector('main');
+            let lastScrollY = window.scrollY;
+            let scrollStopTimer;
+
+            // Function to adjust main content padding dynamically
+            function adjustMainContentPadding() {
+                if (header && mainContent) {
+                    mainContent.style.paddingTop = `${header.offsetHeight + 16}px`; // Add header height + some margin
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+
+                // Clear existing timer
+                clearTimeout(scrollStopTimer);
+
+                // Hide header when scrolling down past its own height
+                if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                    header.classList.add('-translate-y-full'); // Hide header by moving it up
+                } else {
+                    // Show header when scrolling up, or if at the very top of the page
+                    header.classList.remove('-translate-y-full'); // Show header
+                }
+
+                lastScrollY = currentScrollY;
+
+                // Set a timer to show the header when scrolling stops
+                // This is crucial to ensure it reappears even if the user stops scrolling downwards
+                scrollStopTimer = setTimeout(() => {
+                    header.classList.remove('-translate-y-full'); // Ensure header is visible when scrolling stops
+                }, 200); // Adjust delay as needed (milliseconds)
+            });
+
+            // Initial adjustments on load
+            adjustMainContentPadding(); // Ensure padding is correct on first load
+            header.classList.remove('-translate-y-full'); // Ensure header is visible on page load
+
+            // Adjust padding on window resize
+            window.addEventListener('resize', adjustMainContentPadding);
+        };
+    </script>
+</body>
+</html>
