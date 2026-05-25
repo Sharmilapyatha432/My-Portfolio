@@ -36,7 +36,51 @@
         }
     </script>
 
-<link rel="stylesheet" href="style.css">
+    <style>
+        /* Base styles & Scrollbar */
+        ::selection {
+            background-color: #18181b;
+            color: #fafafa;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Image Hover Zoom */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900 font-sans antialiased leading-relaxed">
 
@@ -319,7 +363,7 @@
                 <!-- Project 1 (Multiple Images for Carousel) -->
                 <div class="reveal group cursor-pointer" onclick="openLightbox(this)" data-images='["repablic day firefly.png", "republic day oasis.png", "yoga day glam.png", "gai jatra firefly.png"]'>
                     <div class="img-zoom-container rounded-2xl mb-6 bg-zinc-800 aspect-[4/3] overflow-hidden relative">
-                        <img src="nurses day firefly.png" alt="Festive Post" class="w-full h-full object-cover">
+                        <img src="nurses day firefly.png" alt="Fintech App" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-zinc-900/80   backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="ph ph-images"></i> 4 Images
                         </div>
@@ -335,7 +379,7 @@
                 <!-- Project 2 (Multiple Images) -->
                 <div class="reveal delay-100 group cursor-pointer" onclick="openLightbox(this)" data-images='["Shwaran Offer.jpg", "feed fact himalayan silage.png", "ask us anything glam.png", "design gyan.png"]'>
                     <div class="img-zoom-container rounded-2xl mb-6 bg-zinc-800 aspect-[4/3] overflow-hidden relative">
-                        <img src="bachelor of nursing.png" alt="Stack Post" class="w-full h-full object-cover">
+                        <img src="bachelor of nursing.png" alt="Brand Identity" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-zinc-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="ph ph-images"></i> 4 Images
                         </div>
@@ -351,7 +395,7 @@
                 <!-- Project 3 (Single Image) -->
                 <div class="reveal delay-100 group cursor-pointer" onclick="openLightbox(this)" data-images='["renu di wedding welcome board.png"]'>
                     <div class="img-zoom-container rounded-2xl mb-6 bg-zinc-800 aspect-[4/3] overflow-hidden relative">
-                        <img src="kamal dai reception welcome board.png" alt="Canvas Design" class="w-full h-full object-cover">
+                        <img src="kamal dai reception welcome board.png" alt="Brand Identity" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-zinc-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="ph ph-images"></i> 2 Images
                         </div>
@@ -399,7 +443,7 @@
                     <!-- Codavatar Project 1 -->
                     <div class="reveal group cursor-pointer" onclick="openLightbox(this)" data-images='["announcement post.png"]'>
                         <div class="img-zoom-container rounded-2xl mb-6 bg-zinc-800 aspect-[4/3] overflow-hidden relative">
-                            <img src="announcement post.png" alt="Event Post" class="w-full h-full object-cover">
+                            <img src="announcement post.png" alt="Corporate Branding" class="w-full h-full object-cover">
                             <div class="absolute top-4 right-4 bg-zinc-900/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <i class="ph ph-images"></i> 1 Images
                             </div>
@@ -627,7 +671,7 @@
 
     <!-- Footer -->
     <footer class="py-8 text-center text-zinc-500 text-sm border-t border-zinc-200">
-        <p>&copy; 2026 Sharmila Pyatha Portfolio.</p>
+        <p>&copy; 2026 Designer Portfolio. Crafted with intention and code.</p>
     </footer>
 
     <!-- Lightbox Modal (Hidden by default) -->
@@ -655,6 +699,123 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Intersection Observer for scroll animations (reveal elements)
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once revealed
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+            
+            // Trigger immediately for elements already in view on load
+            setTimeout(() => {
+                reveals.forEach(reveal => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 50) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
+
+        // Lightbox & Carousel Logic
+        let currentImages = [];
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const btnPrev = document.getElementById('lightbox-prev');
+        const btnNext = document.getElementById('lightbox-next');
+        const counter = document.getElementById('lightbox-counter');
+
+        function openLightbox(element) {
+            const imgData = element.getAttribute('data-images');
+            if (imgData) {
+                currentImages = JSON.parse(imgData);
+                currentIndex = 0;
+                updateLightbox();
+                
+                lightbox.classList.remove('hidden');
+                // Trigger reflow for transition
+                void lightbox.offsetWidth;
+                lightbox.classList.remove('opacity-0');
+                lightbox.classList.add('opacity-100');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('opacity-100');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300); // Matches transition duration
+        }
+
+        function updateLightbox() {
+            // Fade out slightly before changing source for smoother transition
+            lightboxImg.style.opacity = 0.5;
+            
+            setTimeout(() => {
+                lightboxImg.src = currentImages[currentIndex];
+                lightboxImg.style.opacity = 1;
+            }, 150);
+
+            if (currentImages.length > 1) {
+                btnPrev.classList.remove('hidden');
+                btnNext.classList.remove('hidden');
+                counter.classList.remove('hidden');
+                counter.innerText = `${currentIndex + 1} / ${currentImages.length}`;
+            } else {
+                btnPrev.classList.add('hidden');
+                btnNext.classList.add('hidden');
+                counter.classList.add('hidden');
+            }
+        }
+
+        function nextImage(e) {
+            if(e) e.stopPropagation();
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            updateLightbox();
+        }
+
+        function prevImage(e) {
+            if(e) e.stopPropagation();
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            updateLightbox();
+        }
+
+        // Close when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.closest('.pointer-events-none') === lightbox.querySelector('.pointer-events-none') && e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard Navigation for Lightbox
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight' && currentImages.length > 1) nextImage();
+            if (e.key === 'ArrowLeft' && currentImages.length > 1) prevImage();
+        });
+    </script>
 </body>
 </html>

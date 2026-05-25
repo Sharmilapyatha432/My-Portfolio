@@ -1,0 +1,45 @@
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #2C3E50; /* Midnight Blue - strong, professional */
+            background-color: #E0F7FA; /* Light Cyan - very subtle background */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll from subtle 3D elements */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2C3E50; /* Midnight Blue */
+        }
+        /* Custom styles for specific elements or overrides */
+        .project-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Main content sections to be layered above the 3D background */
+        main {
+            position: relative;
+            z-index: 10; /* Ensure content is above 3D background */
+            /* Padding for header will be set by JavaScript */
+        }
+        .section-padding {
+            padding: 3rem 1.5rem; /* Consistent padding for sections */
+            margin-bottom: 3rem; /* Consistent margin between sections */
+        }
+
+        /* 3D Photo Effect Styles */
+        .about-photo {
+            perspective: 1000px; /* Establishes a 3D context for the children */
+            transition: transform 0.3s ease-out; /* Smooth transition for hover */
+        }
+
+        .about-photo img {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition for image transform and shadow */
+            transform-origin: center center; /* Ensure rotation is from the center */
+        }
+
+        .about-photo:hover img {
+            transform: rotateY(5deg) rotateX(5deg) scale(1.02); /* Slight tilt and scale on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+        }

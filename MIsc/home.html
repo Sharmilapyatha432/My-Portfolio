@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Designer & Strategist | Portfolio</title>
+    
+    <!-- Fonts: Inter for that clean, Swiss-style agency typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons: High-end, consistent line icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        },
+                        accent: {
+                            DEFAULT: '#4F46E5', // Subtle Indigo
+                            hover: '#4338CA',
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                        'premium-hover': '0 10px 40px rgba(0, 0, 0, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS for micro-interactions and smooth animations */
+        body {
+            background-color: #fafafa;
+            color: #171717;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Subtle animated background gradient for the Hero section */
+        .hero-bg {
+            background: radial-gradient(circle at 15% 50%, rgba(79, 70, 229, 0.05), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 0, 0, 0.02), transparent 25%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom image hover overlay gradient */
+        .project-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+        }
+
+        /* Hide scrollbar for clean horizontal scrolls if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight text-neutral-900 flex items-center gap-2">
+                <i class="ph ph-squares-four text-accent"></i>
+                Studio.
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="#about" class="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">About</a>
+                <a href="#resume" class="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Resume</a>
+                <a href="#work" class="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Work</a>
+                <a href="#system" class="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Design System</a>
+                <a href="#contact" class="text-sm font-medium bg-neutral-900 text-white px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors">Let's Talk</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-neutral-900 text-2xl focus:outline-none">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero-bg min-h-screen flex items-center pt-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+            <div class="max-w-4xl reveal">
+                <p class="text-accent font-medium tracking-wide text-sm md:text-base uppercase mb-6 flex items-center gap-2">
+                    <span class="w-8 h-[1px] bg-accent inline-block"></span>
+                    Portfolio of Alex Vance
+                </p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-neutral-900 leading-[1.05] mb-8">
+                    Crafting <span class="text-neutral-400 font-light italic">elegant</span> systems <br class="hidden md:block" /> for modern brands.
+                </h1>
+                <p class="text-lg md:text-xl text-neutral-500 max-w-2xl leading-relaxed mb-10 font-light">
+                    Visual Designer & Strategist with 10+ years of experience bridging the gap between aesthetic beauty and functional UX. I don't just design interfaces; I build scalable visual languages.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#work" class="bg-neutral-900 text-white px-8 py-4 rounded-full font-medium text-center hover:bg-neutral-800 transition-all shadow-premium hover:shadow-premium-hover flex items-center justify-center gap-2">
+                        View Selected Work <i class="ph ph-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="bg-white text-neutral-900 border border-neutral-200 px-8 py-4 rounded-full font-medium text-center hover:bg-neutral-50 hover:border-neutral-300 transition-all flex items-center justify-center gap-2">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce hidden md:flex">
+            <span class="text-xs text-neutral-500 uppercase tracking-widest">Scroll</span>
+            <i class="ph ph-arrow-down text-neutral-400"></i>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+                
+                <div class="md:col-span-5 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mb-6">Design Philosophy</h2>
+                    <p class="text-neutral-500 leading-relaxed mb-6">
+                        Good design is as little design as possible. Over the last decade, I've refined my process to focus on clarity, purpose, and systematic thinking. I believe that every pixel should serve a function and every interaction should feel natural.
+                    </p>
+                    <p class="text-neutral-500 leading-relaxed">
+                        Whether collaborating with startups or enterprise clients, my goal remains the same: translate complex problems into intuitive, beautiful, and highly scalable digital experiences.
+                    </p>
+                    
+                    <div class="mt-12 flex items-center gap-8 border-t border-neutral-100 pt-8">
+                        <div>
+                            <h4 class="text-4xl font-bold text-neutral-900 mb-1">10+</h4>
+                            <p class="text-sm text-neutral-500 uppercase tracking-wide">Years Exp.</p>
+                        </div>
+                        <div class="w-[1px] h-12 bg-neutral-100"></div>
+                        <div>
+                            <h4 class="text-4xl font-bold text-neutral-900 mb-1">50+</h4>
+                            <p class="text-sm text-neutral-500 uppercase tracking-wide">Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal">
+                    <!-- Skill Card 1 -->
+                    <div class="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:shadow-premium transition-all duration-300">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-accent mb-6 shadow-sm">
+                            <i class="ph ph-bezier-curve text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-neutral-900 mb-2">Brand Identity</h3>
+                        <p class="text-sm text-neutral-500 leading-relaxed">Crafting memorable visual languages, logos, and strict brand guidelines for cohesive messaging.</p>
+                    </div>
+                    <!-- Skill Card 2 -->
+                    <div class="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:shadow-premium transition-all duration-300">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-accent mb-6 shadow-sm">
+                            <i class="ph ph-devices text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-neutral-900 mb-2">UI/UX Design</h3>
+                        <p class="text-sm text-neutral-500 leading-relaxed">Designing intuitive interfaces with a focus on user psychology, accessibility, and pixel-perfect layouts.</p>
+                    </div>
+                    <!-- Skill Card 3 -->
+                    <div class="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:shadow-premium transition-all duration-300">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-accent mb-6 shadow-sm">
+                            <i class="ph ph-text-t text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-neutral-900 mb-2">Typography</h3>
+                        <p class="text-sm text-neutral-500 leading-relaxed">Establishing robust typographic hierarchies that enhance readability and brand tone.</p>
+                    </div>
+                    <!-- Skill Card 4 -->
+                    <div class="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:shadow-premium transition-all duration-300">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-accent mb-6 shadow-sm">
+                            <i class="ph ph-layout text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-neutral-900 mb-2">Design Systems</h3>
+                        <p class="text-sm text-neutral-500 leading-relaxed">Building scalable component libraries and documentation to unify design and engineering teams.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="py-24 md:py-32 bg-white border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <!-- Experience Block -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 mb-24 reveal">
+                <div class="md:col-span-4">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mb-2">Experience</h2>
+                    <p class="text-neutral-500 text-sm uppercase tracking-widest">A decade of design</p>
+                </div>
+                <div class="md:col-span-8 space-y-12 mt-2">
+                    <!-- Job 1 -->
+                    <div class="group border-t border-neutral-100 pt-8 mt-[-32px]">
+                        <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
+                            <h4 class="text-xl font-bold text-neutral-900 group-hover:text-accent transition-colors">Design Director</h4>
+                            <span class="text-sm font-mono text-neutral-400 mt-1 md:mt-0">2020 — Present</span>
+                        </div>
+                        <p class="text-sm font-medium text-neutral-900 mb-4 uppercase tracking-wide">Aura Agency • San Francisco, CA</p>
+                        <p class="text-neutral-500 leading-relaxed">Leading a team of 12 designers, overseeing all creative output from brand identity to complex product design for fintech and healthcare clients. Established the agency's core design system and improved operational efficiency.</p>
+                    </div>
+                    <!-- Job 2 -->
+                    <div class="group border-t border-neutral-100 pt-8">
+                        <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
+                            <h4 class="text-xl font-bold text-neutral-900 group-hover:text-accent transition-colors">Senior Product Designer</h4>
+                            <span class="text-sm font-mono text-neutral-400 mt-1 md:mt-0">2016 — 2020</span>
+                        </div>
+                        <p class="text-sm font-medium text-neutral-900 mb-4 uppercase tracking-wide">Nexus Tech • New York, NY</p>
+                        <p class="text-neutral-500 leading-relaxed">Spearheaded the redesign of the core SaaS platform, improving user retention by 40%. Created and maintained the global component library used by 50+ engineers across multiple squads.</p>
+                    </div>
+                    <!-- Job 3 -->
+                    <div class="group border-t border-neutral-100 pt-8">
+                        <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
+                            <h4 class="text-xl font-bold text-neutral-900 group-hover:text-accent transition-colors">UI/UX Designer</h4>
+                            <span class="text-sm font-mono text-neutral-400 mt-1 md:mt-0">2013 — 2016</span>
+                        </div>
+                        <p class="text-sm font-medium text-neutral-900 mb-4 uppercase tracking-wide">Creative Studio • Remote</p>
+                        <p class="text-neutral-500 leading-relaxed">Designed end-to-end e-commerce experiences and marketing sites for boutique brands. Conducted user research, wireframing, prototyping, and A/B testing to optimize conversion funnels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Block -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 reveal">
+                <div class="md:col-span-4">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mb-2">Education</h2>
+                    <p class="text-neutral-500 text-sm uppercase tracking-widest">Academic background</p>
+                </div>
+                <div class="md:col-span-8 space-y-12 mt-2">
+                    <!-- Edu 1 -->
+                    <div class="group border-t border-neutral-100 pt-8 mt-[-32px]">
+                        <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-2">
+                            <h4 class="text-xl font-bold text-neutral-900 group-hover:text-accent transition-colors">BFA in Graphic Design</h4>
+                            <span class="text-sm font-mono text-neutral-400 mt-1 md:mt-0">2009 — 2013</span>
+                        </div>
+                        <p class="text-sm font-medium text-neutral-900 mb-4 uppercase tracking-wide">Rhode Island School of Design (RISD)</p>
+                        <p class="text-neutral-500 leading-relaxed">Graduated with Honors. Specialized in typography, visual systems design, and human-computer interaction. Awarded the Senior Design Excellence Award for outstanding thesis project.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="work" class="py-24 md:py-32 bg-neutral-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mb-4">Selected Works</h2>
+                    <p class="text-neutral-500">A curated selection of case studies highlighting process, problem-solving, and visual execution.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-accent font-medium hover:text-accent-hover transition-colors">
+                    View full archive <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Project Grid: Balanced 2-column layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                
+                <!-- Project 1 -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-neutral-200 aspect-[4/3] mb-6">
+                        <!-- High-quality placeholder matching the premium aesthetic -->
+                        <img src="https://placehold.co/800x600/e5e5e5/171717?text=Fintech+App+Redesign" alt="Project 1" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                        
+                        <!-- Hover Overlay -->
+                        <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full w-max mb-3 border border-white/30">Case Study</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Aura FinTech</h3>
+                            <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Complete UX overhaul and design system.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Aura FinTech</h3>
+                        <p class="text-neutral-500 text-sm">UI/UX • Design System • Prototyping</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 (Offset slightly on desktop for dynamic grid) -->
+                <div class="group cursor-pointer reveal md:mt-16">
+                    <div class="relative overflow-hidden rounded-2xl bg-neutral-200 aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/171717/fafafa?text=Editorial+E-Commerce" alt="Project 2" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                        
+                        <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full w-max mb-3 border border-white/30">Case Study</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Lumina Maison</h3>
+                            <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">E-commerce experience for a luxury furniture brand.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Lumina Maison</h3>
+                        <p class="text-neutral-500 text-sm">Art Direction • Web Design • Interaction</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden rounded-2xl bg-neutral-200 aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/f5f5f5/404040?text=SaaS+Dashboard" alt="Project 3" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                        
+                        <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full w-max mb-3 border border-white/30">Case Study</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">MetricsFlow SaaS</h3>
+                            <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Data visualization and dashboard UI.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">MetricsFlow SaaS</h3>
+                        <p class="text-neutral-500 text-sm">Product Design • Data Viz • Web App</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="group cursor-pointer reveal md:mt-16">
+                    <div class="relative overflow-hidden rounded-2xl bg-neutral-200 aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/4F46E5/ffffff?text=Brand+Identity" alt="Project 4" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                        
+                        <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full w-max mb-3 border border-white/30">Case Study</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Nexus Mobility</h3>
+                            <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Brand identity and guideline creation.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Nexus Mobility</h3>
+                        <p class="text-neutral-500 text-sm">Branding • Typography • Print</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center md:hidden reveal">
+                <a href="#" class="inline-flex items-center gap-2 text-accent font-medium px-6 py-3 border border-accent rounded-full hover:bg-accent hover:text-white transition-colors">
+                    View full archive <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="system" class="py-24 md:py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <p class="text-accent text-sm font-medium uppercase tracking-widest mb-3">Systems Thinking</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 mb-6">Built on scalable foundations.</h2>
+                <p class="text-neutral-500 leading-relaxed">
+                    A look under the hood. I approach design systematically, ensuring consistency, accessibility, and ease of handoff to development teams through rigorous guidelines.
+                </p>
+            </div>
+
+            <div class="bg-neutral-50 border border-neutral-100 rounded-3xl p-8 md:p-12 shadow-premium reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+                    
+                    <!-- Typography Showcase -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-neutral-400 uppercase tracking-widest mb-8 border-b border-neutral-200 pb-2">Typography Scale</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-baseline justify-between border-b border-neutral-200/50 pb-4">
+                                <span class="text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight">Display</span>
+                                <span class="text-xs text-neutral-400 font-mono">Inter / Bold / 48px</span>
+                            </div>
+                            <div class="flex items-baseline justify-between border-b border-neutral-200/50 pb-4">
+                                <span class="text-2xl md:text-3xl font-semibold text-neutral-900 tracking-tight">Heading</span>
+                                <span class="text-xs text-neutral-400 font-mono">Inter / SemiB / 30px</span>
+                            </div>
+                            <div class="flex items-baseline justify-between border-b border-neutral-200/50 pb-4">
+                                <span class="text-base text-neutral-700 leading-relaxed">Body text goes here. It is optimized for maximum readability.</span>
+                                <span class="text-xs text-neutral-400 font-mono">Inter / Reg / 16px</span>
+                            </div>
+                            <div class="flex items-baseline justify-between pb-2">
+                                <span class="text-xs text-neutral-500 uppercase tracking-widest">Caption & Overline</span>
+                                <span class="text-xs text-neutral-400 font-mono">Inter / Med / 12px</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colors & Components Showcase -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-neutral-400 uppercase tracking-widest mb-8 border-b border-neutral-200 pb-2">Color & Components</h3>
+                        
+                        <!-- Color Swatches -->
+                        <div class="flex gap-4 mb-10">
+                            <div class="group">
+                                <div class="w-12 h-12 rounded-full bg-neutral-900 shadow-sm mb-2 border border-neutral-200"></div>
+                                <span class="text-[10px] text-neutral-400 font-mono opacity-0 group-hover:opacity-100 transition-opacity">#171717</span>
+                            </div>
+                            <div class="group">
+                                <div class="w-12 h-12 rounded-full bg-neutral-500 shadow-sm mb-2 border border-neutral-200"></div>
+                                <span class="text-[10px] text-neutral-400 font-mono opacity-0 group-hover:opacity-100 transition-opacity">#737373</span>
+                            </div>
+                            <div class="group">
+                                <div class="w-12 h-12 rounded-full bg-neutral-100 shadow-sm mb-2 border border-neutral-200"></div>
+                                <span class="text-[10px] text-neutral-400 font-mono opacity-0 group-hover:opacity-100 transition-opacity">#F5F5F5</span>
+                            </div>
+                            <div class="group">
+                                <div class="w-12 h-12 rounded-full bg-accent shadow-sm mb-2 border border-neutral-200"></div>
+                                <span class="text-[10px] text-neutral-400 font-mono opacity-0 group-hover:opacity-100 transition-opacity">#4F46E5</span>
+                            </div>
+                        </div>
+
+                        <!-- UI Elements -->
+                        <div class="space-y-4">
+                            <div class="flex flex-wrap gap-4 items-center">
+                                <button class="bg-accent text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-accent-hover transition-colors shadow-sm">Primary Button</button>
+                                <button class="bg-white border border-neutral-200 text-neutral-900 px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-50 transition-colors shadow-sm">Secondary</button>
+                            </div>
+                            <div class="pt-2 flex gap-4 text-2xl text-neutral-700">
+                                <i class="ph ph-bell hover:text-accent cursor-pointer transition-colors"></i>
+                                <i class="ph ph-bookmark-simple hover:text-accent cursor-pointer transition-colors"></i>
+                                <i class="ph ph-chat-circle hover:text-accent cursor-pointer transition-colors"></i>
+                                <i class="ph ph-gear hover:text-accent cursor-pointer transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-neutral-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center reveal">
+            <i class="ph-fill ph-quotes text-4xl text-neutral-700 mb-8 inline-block"></i>
+            <div class="max-w-4xl mx-auto">
+                <p class="text-2xl md:text-3xl font-light leading-relaxed mb-8">
+                    "Alex doesn't just deliver beautiful designs; he delivers strategic solutions. His ability to distill complex requirements into seamless, elegant user experiences completely transformed our product."
+                </p>
+                <div>
+                    <h4 class="font-semibold text-white tracking-wide">Sarah Jenkins</h4>
+                    <p class="text-neutral-400 text-sm">VP of Product, Aura FinTech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                
+                <!-- Contact Info -->
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 mb-6">Let's build something <br class="hidden md:block"/> remarkable together.</h2>
+                    <p class="text-neutral-500 leading-relaxed mb-12 max-w-md">
+                        I'm currently available for freelance projects and consulting. If you have a project in mind, or just want to say hi, feel free to reach out.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-1">Email</p>
+                            <a href="mailto:hello@alexvance.design" class="text-lg font-medium text-neutral-900 hover:text-accent transition-colors">hello@alexvance.design</a>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-1">Location</p>
+                            <p class="text-lg font-medium text-neutral-900">San Francisco, CA (Remote Worldwide)</p>
+                        </div>
+                        <div class="pt-6 flex gap-6">
+                            <a href="#" class="text-neutral-500 hover:text-neutral-900 transition-colors text-2xl"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" class="text-neutral-500 hover:text-neutral-900 transition-colors text-2xl"><i class="ph-fill ph-dribbble-logo"></i></a>
+                            <a href="#" class="text-neutral-500 hover:text-neutral-900 transition-colors text-2xl"><i class="ph-fill ph-twitter-logo"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="reveal bg-neutral-50 p-8 md:p-12 rounded-3xl border border-neutral-100">
+                    <form id="contactForm" onsubmit="event.preventDefault(); showMessage();">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-neutral-700 mb-2">Name</label>
+                                <input type="text" id="name" required class="w-full bg-white border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all placeholder-neutral-400" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">Email</label>
+                                <input type="email" id="email" required class="w-full bg-white border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all placeholder-neutral-400" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-neutral-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" required class="w-full bg-white border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all placeholder-neutral-400 resize-none" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-neutral-900 text-white font-medium py-4 rounded-lg hover:bg-neutral-800 transition-colors shadow-premium flex justify-center items-center gap-2">
+                                Send Message <i class="ph ph-paper-plane-tilt"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Success Message Box (Hidden by default) -->
+                        <div id="successMsg" class="hidden mt-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-xl text-green-500 mt-0.5"></i>
+                            <div>
+                                <p class="font-medium">Message sent successfully!</p>
+                                <p class="opacity-80">I'll get back to you within 24-48 hours.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-neutral-100 py-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Alex Vance. All rights reserved.</p>
+            <a href="#" class="hover:text-neutral-900 transition-colors flex items-center gap-2">
+                Back to top <i class="ph ph-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header Logic (Adds background and shadow on scroll)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'backdrop-blur-md', 'border-b-neutral-100', 'shadow-sm');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-white/80', 'backdrop-blur-md', 'border-b-neutral-100', 'shadow-sm');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        // Scroll Reveal Logic (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15, // Trigger when 15% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Mock Form Submission Function (Prevents using alert())
+        function showMessage() {
+            const btn = document.querySelector('button[type="submit"]');
+            const msgBox = document.getElementById('successMsg');
+            
+            // Simulate loading state
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Sending...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                // Show success
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                document.getElementById('contactForm').reset();
+                
+                msgBox.classList.remove('hidden');
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    msgBox.classList.add('hidden');
+                }, 5000);
+
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
